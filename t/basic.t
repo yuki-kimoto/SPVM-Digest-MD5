@@ -1,3 +1,7 @@
+use lib 't/lib';
+use SPVMImpl;
+Digest::MD5::is_spvm();
+
 use Test::More;
 
 use strict;
