@@ -1,6 +1,8 @@
 use lib 't/lib';
+use Digest::MD5;
 use SPVMImpl;
 Digest::MD5::is_spvm();
+die unless $INC{'Digest/MD5.pm'} =~ /\bblib\b/;
 
 use Digest::MD5;
 use Test::More tests => 6;

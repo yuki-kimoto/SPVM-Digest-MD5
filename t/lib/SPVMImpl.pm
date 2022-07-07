@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 use SPVM 'Digest::MD5';
-no warnings 'redefine';
 
 package Digest::MD5;
 
