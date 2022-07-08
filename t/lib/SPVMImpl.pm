@@ -94,9 +94,7 @@ use warnings::register;
       utf8::downgrade($data);
     }
     
-    $orig->($self, $data);
-    
-    return $self;
+    return $orig->($self, $data);
   };
 }
 

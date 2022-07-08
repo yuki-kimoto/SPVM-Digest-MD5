@@ -8,7 +8,7 @@ class Digest::MD5 {
   
   native static method new : Digest::MD5 ();
 
-  native method add : void ($data : string);
+  native method add : Digest::MD5 ($data : string);
   native method digest : string ();
   native method hexdigest : string ();
   native method b64digest : string ();
