@@ -514,3 +514,23 @@ int32_t SPVM__Digest__MD5__md5_base64(SPVM_ENV* env, SPVM_VALUE* stack) {
         
         return 0;
 }
+
+int32_t SPVM__Digest__MD5__add(SPVM_ENV* env, SPVM_VALUE* stack) {
+        return 0;
+}
+
+int32_t SPVM__Digest__MD5__digest(SPVM_ENV* env, SPVM_VALUE* stack) {
+        return 0;
+}
+
+int32_t SPVM__Digest__MD5__hexdigest(SPVM_ENV* env, SPVM_VALUE* stack) {
+        return 0;
+}
+
+int32_t SPVM__Digest__MD5__b64digest(SPVM_ENV* env, SPVM_VALUE* stack) {
+        return 0;
+}
+
+int32_t SPVM__Digest__MD5__DESTROY(SPVM_ENV* env, SPVM_VALUE* stack) {
+        return 0;
+}

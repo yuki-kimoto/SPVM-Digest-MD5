@@ -16,6 +16,15 @@ SPVM::Digest::MD5 - SPVM interface to the MD5 Algorithm
   my $digest = Digest::MD5->md5_hex($data);
   my $digest = Digest::MD5->md5_base64($data);
 
+  my $md5 = Digest::MD5->new;
+  
+  $md5->add($data1);
+  $md5->add($data2);
+  
+  my $digest = $md5->digest;
+  my $digest = $md5->hexdigest;
+  my $digest = $md5->b64digest;
+
 =head1 Description
 
 The C<Digest::MD5> module allows you to use the RSA Data Security
