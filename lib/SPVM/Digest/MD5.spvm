@@ -6,9 +6,7 @@ class Digest::MD5 {
   native static method md5_hex : string ($data : string);
   native static method md5_base64 : string ($data : string);
   
-  static method new : Digest::MD5 () {
-    return new Digest::MD5;
-  }
+  native static method new : Digest::MD5 ();
 
   native method add : void ($data : string);
   native method digest : string ();
