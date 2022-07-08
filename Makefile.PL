@@ -30,6 +30,11 @@ WriteMakefile(
     'SPVM'              => '0.9619',
   },
   NORECURS => 1,
+  META_MERGE   => {
+      no_index => {
+          directory => [qw/perl_impl/],
+      }
+  }
 );
 
 sub MY::postamble {
