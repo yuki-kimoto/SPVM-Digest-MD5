@@ -1,4 +1,5 @@
 use lib 't/lib';
+use blib 'perl_impl';
 use SPVM 'Digest::MD5';
 use Digest::MD5;
 use SPVMImpl;

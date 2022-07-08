@@ -29,6 +29,7 @@ WriteMakefile(
   CONFIGURE_REQUIRES => {
     'SPVM'              => '0.9619',
   },
+  NORECURS => 1,
 );
 
 sub MY::postamble {
@@ -37,6 +38,7 @@ sub MY::postamble {
   
   $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('Digest::MD5');
   
+  $make_rule .= qq|dynamic ::\n\tperl -e 'chdir "perl_impl" or die; system("perl Makefile.PL && make") == 0 or die';|;
   
   return $make_rule;
 }

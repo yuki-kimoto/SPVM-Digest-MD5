@@ -1,3 +1,6 @@
+0.03 2022-07-08
+  [Changes]
+    * Hide subdirectory's Digest::MD5 from ExtUtils::MakeMaker.
 0.02 2022-07-08
   [New Features]
     * Add the following methods.
