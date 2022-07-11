@@ -9,7 +9,7 @@
 ^SPVM-
 ^core.
 ^core$
-.bak$
-.tmp$
-.BAK$
-^.git/
+\.bak$
+\.tmp$
+\.BAK$
+^\.git/

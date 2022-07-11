@@ -55,7 +55,6 @@ perl_impl/hints/dec_osf.pl
 perl_impl/hints/irix_6.pl
 perl_impl/hints/MacOS.pl
 perl_impl/Makefile
-perl_impl/Makefile.old
 perl_impl/Makefile.PL
 perl_impl/MANIFEST
 perl_impl/MANIFEST.SKIP
