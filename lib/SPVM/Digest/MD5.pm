@@ -133,6 +133,10 @@ L<SPVM::Digest::MD5 - Github|https://github.com/yuki-kimoto/SPVM-Digest-MD5>
 
 Yuki Kimoto C<kimoto.yuki@gmail.com>
 
+=head1 Contributors
+
+L<Yoshiyuki Itoh|https://github.com/YoshiyukiItoh>
+
 =head1 Copyright & License
 
 Copyright 2022-2022 Yuki Kimoto, all rights reserved.
