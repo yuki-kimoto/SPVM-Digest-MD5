@@ -15,9 +15,16 @@ class TestCase::Digest::MD5 {
   }
 
   static method md5_hex : int () {
+    # align.t
+    {
+      my $str = Fn->substr(Fn->repeat("\100", 20),1);
+      unless (Digest::MD5->md5_hex($str) eq "c7ebb510e59ee96f404f288d14cc656a") {
+        return 0;
+      }
+    }
     # Exception
     {
-      eval { Digest::MD5->md5(undef); };
+      eval { Digest::MD5->md5_hex(undef); };
       unless (Fn->contains($@, "The input must be defined")) {
         return 0;
       }
@@ -29,7 +36,7 @@ class TestCase::Digest::MD5 {
   static method md5_base64 : int () {
     # Exception
     {
-      eval { Digest::MD5->md5(undef); };
+      eval { Digest::MD5->md5_base64(undef); };
       unless (Fn->contains($@, "The input must be defined")) {
         return 0;
       }
