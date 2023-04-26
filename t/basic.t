@@ -6,6 +6,10 @@ use SPVMImpl;
 Digest::MD5::is_spvm();
 die unless $INC{'Digest/MD5.pm'} =~ /\bblib\b/;
 
+use SPVM 'Fn';
+use SPVM::Digest::MD5;
+use SPVM 'Digest::MD5';
+
 use Test::More;
 
 use strict;
@@ -25,6 +29,11 @@ my $start_memory_blocks_count = SPVM::api->get_memory_blocks_count();
   ok(SPVM::TestCase::Digest::MD5->md5_hex);
   ok(SPVM::TestCase::Digest::MD5->md5_base64);
   ok(SPVM::TestCase::Digest::MD5->add);
+}
+
+# Version
+{
+  is($SPVM::Digest::MD5::VERSION, SPVM::Fn->get_version_string('Digest::MD5'));
 }
 
 # All object is freed

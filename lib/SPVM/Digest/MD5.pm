@@ -1,6 +1,6 @@
 package SPVM::Digest::MD5;
 
-our $VERSION = '0.13';
+our $VERSION = "1.001";
 
 1;
 

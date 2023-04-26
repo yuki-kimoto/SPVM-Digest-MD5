@@ -2,6 +2,8 @@
 # MIT License
 
 class Digest::MD5 {
+  version "1.001";
+  
   use Digest::MD5::Context;
   has context : Digest::MD5::Context;
   
