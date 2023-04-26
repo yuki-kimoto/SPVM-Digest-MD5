@@ -1,3 +1,6 @@
+# Copyright (c) 2023 Yuki Kimoto
+# MIT License
+
 class Digest::MD5 {
   use Digest::MD5::Context;
   has context : Digest::MD5::Context;
