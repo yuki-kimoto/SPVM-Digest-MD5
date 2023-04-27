@@ -14,8 +14,6 @@ class Digest::MD5 {
   
   native static method md5_hex : string ($data : string);
   
-  native static method md5_base64 : string ($data : string);
-  
   native static method new : Digest::MD5 ();
   
   # Instance Methods
@@ -26,6 +24,4 @@ class Digest::MD5 {
   native method digest : string ();
   
   native method hexdigest : string ();
-  
-  native method b64digest : string ();
 }

@@ -17,8 +17,7 @@ The Digest::MD5 class of L<SPVM> has methods for MD5.
   use Digest::MD5;
   
   my $digest = Digest::MD5->md5($data);
-  my $digest = Digest::MD5->md5_hex($data);
-  my $digest = Digest::MD5->md5_base64($data);
+  my $digest_hex = Digest::MD5->md5_hex($data);
 
 Object-Oriented Programming:
 
@@ -28,8 +27,7 @@ Object-Oriented Programming:
   $md5->add($data2);
   
   my $digest = $md5->digest;
-  my $digest = $md5->hexdigest;
-  my $digest = $md5->b64digest;
+  my $digest_hex = $md5->hexdigest;
 
 =head1 Class Methods
 
@@ -52,24 +50,6 @@ The $data must be defined. Otherwise an exception is thrown.
 Same as L</"md5">, but will return the digest in hexadecimal form. The
 length of the returned string will be 32 and it will only contain
 characters from this set: '0'..'9' and 'a'..'f'.
-
-Exceptions:
-
-Exceptions of L</"md5"> can be thrown.
-
-=head2 md5_base64
-
-  static method md5_base64 : string ($data : string);
-
-Same as L</"md5">, but will return the digest as a base64 encoded string.
-The length of the returned string will be 22 and it will only contain
-characters from this set: 'A'..'Z', 'a'..'z', '0'..'9', '+' and
-'/'.
-
-Note that the base64 encoded string returned is not padded to be a
-multiple of 4 bytes long.  If you want interoperability with other
-base64 encoded md5 digests you might want to append the redundant
-string "==" to the result.
 
 Exceptions:
 
@@ -114,19 +94,6 @@ Returns the binary digest for the message.  The returned string will be
 Same as L</"digest">, but will return the digest in hexadecimal
 form. The length of the returned string will be 32 and it will only
 contain characters from this set: '0'..'9' and 'a'..'f'.
-
-=head2 b64digest
-
-  method b64digest : string ();
-
-Same as L</"digest">, but will return the digest as a base64 encoded
-string.  The length of the returned string will be 22 and it will only
-contain characters from this set: 'A'..'Z', 'a'..'z', '0'..'9', '+'
-and '/'.
-
-The base64 encoded string returned is not padded to be a multiple of 4
-bytes long.  If you want interoperability with other base64 encoded
-md5 digests you might want to append the string "==" to the result.
 
 =head1 Repository
 

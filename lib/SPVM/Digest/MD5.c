@@ -336,30 +336,6 @@ static char* hex_16(const unsigned char* from, char* to) {
   return to;
 }
 
-static char* base64_16(const unsigned char* from, char* to) {
-  static const char base64[] =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-  const unsigned char *end = from + 16;
-  unsigned char c1, c2, c3;
-  char *d = to;
-
-  while (1) {
-    c1 = *from++;
-    *d++ = base64[c1>>2];
-    if (from == end) {
-      *d++ = base64[(c1 & 0x3) << 4];
-      break;
-    }
-    c2 = *from++;
-    c3 = *from++;
-    *d++ = base64[((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4)];
-    *d++ = base64[((c2 & 0xF) << 2) | ((c3 & 0xC0) >>6)];
-    *d++ = base64[c3 & 0x3F];
-  }
-  *d = '\0';
-  return to;
-}
-
 /* Formats */
 #define F_BIN 0
 #define F_HEX 1
@@ -378,10 +354,6 @@ static void* make_output(SPVM_ENV* env, SPVM_VALUE* stack, const unsigned char *
   case F_HEX:
     ret = hex_16(src, result);
     len = 32;
-    break;
-  case F_B64:
-    ret = base64_16(src, result);
-    len = 22;
     break;
   default:
     assert(0);
@@ -438,30 +410,6 @@ int32_t SPVM__Digest__MD5__md5_hex(SPVM_ENV* env, SPVM_VALUE* stack) {
   MD5Final(digeststr, &ctx);
   void* output = make_output(env, stack, digeststr, F_HEX);
   stack[0].oval = output;
-  return 0;
-}
-
-int32_t SPVM__Digest__MD5__md5_base64(SPVM_ENV* env, SPVM_VALUE* stack) {
-  MD5_CTX ctx;
-  int i;
-  unsigned char *data;
-  int32_t len;
-  unsigned char digeststr[16];
-  void* obj_data = stack[0].oval;
-  
-  if (!obj_data) {
-    return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
-  }
-  
-  data = (unsigned char *)env->get_chars(env, stack, obj_data);
-  len = env->length(env, stack, obj_data);
-  
-  MD5Init(&ctx);
-  MD5Update(&ctx, data, len);
-  MD5Final(digeststr, &ctx);
-  void* output = make_output(env, stack, digeststr, F_B64);
-  stack[0].oval = output;
-  
   return 0;
 }
 
@@ -561,21 +509,3 @@ int32_t SPVM__Digest__MD5__hexdigest(SPVM_ENV* env, SPVM_VALUE* stack) {
   stack[0].oval = output;
   return 0;
 }
-
-int32_t SPVM__Digest__MD5__b64digest(SPVM_ENV* env, SPVM_VALUE* stack) {
-  int32_t e;
-  void* obj_self = stack[0].oval;
-  
-  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
-  if (e) { return e; }
-  
-  MD5_CTX* ctx = env->get_pointer(env, stack, obj_ctx);
-  
-  unsigned char digeststr[16];
-  MD5Final(digeststr, ctx);
-  void* output = make_output(env, stack, digeststr, F_B64);
-  stack[0].oval = output;
-  
-  return 0;
-}
-

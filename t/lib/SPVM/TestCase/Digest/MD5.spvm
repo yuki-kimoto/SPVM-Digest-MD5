@@ -329,18 +329,6 @@ class TestCase::Digest::MD5 {
     return 1;
   }
   
-  static method md5_base64 : int () {
-    # Exception
-    {
-      eval { Digest::MD5->md5_base64(undef); };
-      unless (Fn->contains($@, "The \$data must be defined")) {
-        return 0;
-      }
-    }
-    $@ = undef;
-    return 1;
-  }
-  
   static method new : int () {
     {
       my $md5 = Digest::MD5->new;
@@ -402,10 +390,6 @@ class TestCase::Digest::MD5 {
       }
     }
     
-    return 1;
-  }
-  
-  static method b64digest : int () {
     return 1;
   }
   
