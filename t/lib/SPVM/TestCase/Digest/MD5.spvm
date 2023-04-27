@@ -27,7 +27,7 @@ class TestCase::Digest::MD5 {
     # Various inputs
     {
       my $expected_outputs = [
-        (string)undef,
+        "d41d8cd98f00b204e9800998ecf8427e",
         "0cc175b9c0f1b6a831c399e269772661",
         "4124bc0a9335c27f086f24ba207a4912",
         "47bce5c74f589f4867dbd57e9ca9f808",
@@ -287,7 +287,7 @@ class TestCase::Digest::MD5 {
       ];
 
       my $ok = 1;
-      for (my $i = 1; $i <= 256; $i++) {
+      for (my $i = 0; $i <= 256; $i++) {
         my $input = Fn->repeat("a", $i);
         
         my $output = Digest::MD5->md5_hex($input);
