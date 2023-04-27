@@ -10,6 +10,7 @@ lib/SPVM/Digest/MD5.c
 lib/SPVM/Digest/MD5.config
 lib/SPVM/Digest/MD5.pm
 lib/SPVM/Digest/MD5.spvm
+lib/SPVM/Digest/MD5/Context.pm
 lib/SPVM/Digest/MD5/Context.spvm
 LICENSE
 Makefile.PL
