@@ -58,9 +58,6 @@ sub MY::postamble {
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('Digest::MD5');
   }
   
-  # Compile Perl's Digest::MD5 for tests.
-  $make_rule .= qq|dynamic ::\n\tperl -e "use Config;chdir qq(perl_impl) or die; system(qq(perl Makefile.PL)) == 0 or die;system(qq($Config{make})) == 0 or die;";|;
-  
   return $make_rule;
 }
 
