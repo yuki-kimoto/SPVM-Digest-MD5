@@ -49,5 +49,4 @@ t/basic.t
 t/lib/SPVM/TestCase/Digest/MD5.spvm
 t/lib/SPVMImpl.pm
 t/md5-aaa.t
-t/MD5.xs
 t/utf8.t
