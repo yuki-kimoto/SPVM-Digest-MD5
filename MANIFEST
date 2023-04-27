@@ -45,7 +45,6 @@ perl_impl/t/utf8.t
 perl_impl/t/warns.t
 perl_impl/typemap
 README.md
-t/align.t
 t/basic.t
 t/lib/SPVM/TestCase/Digest/MD5.spvm
 t/lib/SPVMImpl.pm
@@ -54,4 +53,3 @@ t/MD5.xs
 t/README
 t/rfc1321.txt
 t/utf8.t
-t/warns.t
