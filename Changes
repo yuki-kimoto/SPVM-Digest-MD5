@@ -3,6 +3,8 @@
     * SPVM 0.971006 is required.
   [License Change]
     * The license is changed to MIT License.
+  [Exception Message Changes]
+    * Exception messages are improved.
 0.13  2023-03-20
   [Internal Compatible Changes]
     * Use SPVM::ExchangeAPI method instead of SPVM functions.
