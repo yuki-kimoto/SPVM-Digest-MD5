@@ -1,7 +1,8 @@
 class TestCase::Digest::MD5 {
   use Fn;
   use Digest::MD5;
-
+  
+  # Class Methods
   static method md5 : int () {
     # Exception
     {
@@ -317,7 +318,13 @@ class TestCase::Digest::MD5 {
     $@ = undef;
     return 1;
   }
-
+  
+  static method new : int () {
+    
+    return 1;
+  }
+  
+  # Instance Methods
   static method add : int () {
     # md5-aaa.t
     {
@@ -603,4 +610,17 @@ class TestCase::Digest::MD5 {
     $@ = undef;
     return 1;
   }
+  
+  static method digest : int () {
+    return 1;
+  }
+  
+  static method hexdigest : int () {
+    return 1;
+  }
+  
+  static method b64digest : int () {
+    return 1;
+  }
+  
 }
