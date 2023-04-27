@@ -116,8 +116,7 @@ static const unsigned char PADDING[64] = {
  TRUNC32((a));
 
 
-static void
-MD5Init(MD5_CTX *ctx) {
+static void MD5Init(MD5_CTX *ctx) {
   /* Start state */
   ctx->A = 0x67452301;
   ctx->B = 0xefcdab89;
@@ -129,8 +128,7 @@ MD5Init(MD5_CTX *ctx) {
 }
 
 
-static void
-MD5Transform(MD5_CTX* ctx, const uint8_t* buf, int32_t blocks) {
+static void MD5Transform(MD5_CTX* ctx, const uint8_t* buf, int32_t blocks) {
 #ifdef SPVM_DIGEST_MD5_DEBUG
   static int tcount = 0;
 #endif
@@ -253,8 +251,7 @@ MD5Transform(MD5_CTX* ctx, const uint8_t* buf, int32_t blocks) {
 
 
 #ifdef SPVM_DIGEST_MD5_DEBUG
-static char*
-ctx_dump(MD5_CTX* ctx) {
+static char* ctx_dump(MD5_CTX* ctx) {
   static char buf[1024];
   sprintf(buf, "{A=%x,B=%x,C=%x,D=%x,%d,%d(%d)}",
     ctx->A, ctx->B, ctx->C, ctx->D,
@@ -264,8 +261,7 @@ ctx_dump(MD5_CTX* ctx) {
 #endif
 
 
-static void
-MD5Update(MD5_CTX* ctx, const uint8_t* buf, int32_t len) {
+static void MD5Update(MD5_CTX* ctx, const uint8_t* buf, int32_t len) {
   int32_t blocks;
   int32_t fill = ctx->bytes_low & 0x3F;
 
@@ -300,8 +296,7 @@ MD5Update(MD5_CTX* ctx, const uint8_t* buf, int32_t len) {
 }
 
 
-static void
-MD5Final(uint8_t* digest, MD5_CTX *ctx) {
+static void MD5Final(uint8_t* digest, MD5_CTX *ctx) {
   int32_t fill = ctx->bytes_low & 0x3F;
   int32_t padlen = (fill < 56 ? 56 : 120) - fill;
   uint32_t bits_low, bits_high;
@@ -398,6 +393,7 @@ static void* make_output(SPVM_ENV* env, SPVM_VALUE* stack, const unsigned char *
   return obj_ret;
 }
 
+// Class Methods
 int32_t SPVM__Digest__MD5__md5(SPVM_ENV* env, SPVM_VALUE* stack) {
   MD5_CTX ctx;
   int i;
@@ -405,14 +401,14 @@ int32_t SPVM__Digest__MD5__md5(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t len;
   unsigned char digeststr[16];
 
-  void* obj_string = stack[0].oval;
+  void* obj_data = stack[0].oval;
   
-  if (!obj_string) {
+  if (!obj_data) {
     return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
-  data = (unsigned char *)env->get_chars(env, stack, obj_string);
-  len = env->length(env, stack, obj_string);
+  data = (unsigned char *)env->get_chars(env, stack, obj_data);
+  len = env->length(env, stack, obj_data);
   
   MD5Init(&ctx);
   MD5Update(&ctx, data, len);
@@ -428,14 +424,14 @@ int32_t SPVM__Digest__MD5__md5_hex(SPVM_ENV* env, SPVM_VALUE* stack) {
   unsigned char *data;
   int32_t len;
   unsigned char digeststr[16];
-  void* obj_string = stack[0].oval;
+  void* obj_data = stack[0].oval;
   
-  if (!obj_string) {
+  if (!obj_data) {
     return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
-  data = (unsigned char *)env->get_chars(env, stack, obj_string);
-  len = env->length(env, stack, obj_string);
+  data = (unsigned char *)env->get_chars(env, stack, obj_data);
+  len = env->length(env, stack, obj_data);
   
   MD5Init(&ctx);
   MD5Update(&ctx, data, len);
@@ -451,14 +447,14 @@ int32_t SPVM__Digest__MD5__md5_base64(SPVM_ENV* env, SPVM_VALUE* stack) {
   unsigned char *data;
   int32_t len;
   unsigned char digeststr[16];
-  void* obj_string = stack[0].oval;
+  void* obj_data = stack[0].oval;
   
-  if (!obj_string) {
+  if (!obj_data) {
     return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
-  data = (unsigned char *)env->get_chars(env, stack, obj_string);
-  len = env->length(env, stack, obj_string);
+  data = (unsigned char *)env->get_chars(env, stack, obj_data);
+  len = env->length(env, stack, obj_data);
   
   MD5Init(&ctx);
   MD5Update(&ctx, data, len);
@@ -490,19 +486,36 @@ int32_t SPVM__Digest__MD5__new(SPVM_ENV* env, SPVM_VALUE* stack) {
   return 0;
 }
 
+// Instance Methods
+int32_t SPVM__Digest__MD5__DESTROY(SPVM_ENV* env, SPVM_VALUE* stack) {
+  int32_t e;
+  
+  void* obj_self = stack[0].oval;
+  
+  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
+  if (e) { return e; }
+  
+  MD5_CTX* ctx = env->get_pointer(env, stack, obj_ctx);
+  assert(ctx);
+  
+  env->free_memory_stack(env, stack, ctx);
+  
+  return 0;
+}
+
 int32_t SPVM__Digest__MD5__add(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e;
   void* obj_self = stack[0].oval;
   
-  void* obj_string = stack[1].oval;
+  void* obj_data = stack[1].oval;
   
-  if (!obj_string) {
+  if (!obj_data) {
     return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
-  const char* data = (unsigned char *)env->get_chars(env, stack, obj_string);
-  int32_t len = env->length(env, stack, obj_string);
+  const char* data = (unsigned char *)env->get_chars(env, stack, obj_data);
+  int32_t len = env->length(env, stack, obj_data);
   
   void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
@@ -566,18 +579,3 @@ int32_t SPVM__Digest__MD5__b64digest(SPVM_ENV* env, SPVM_VALUE* stack) {
   return 0;
 }
 
-int32_t SPVM__Digest__MD5__DESTROY(SPVM_ENV* env, SPVM_VALUE* stack) {
-  int32_t e;
-  
-  void* obj_self = stack[0].oval;
-  
-  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
-  if (e) { return e; }
-  
-  MD5_CTX* ctx = env->get_pointer(env, stack, obj_ctx);
-  assert(ctx);
-  
-  env->free_memory_stack(env, stack, ctx);
-  
-  return 0;
-}
