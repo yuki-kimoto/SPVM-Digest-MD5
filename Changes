@@ -5,6 +5,8 @@
     * The license is changed to MIT License.
   [Exception Message Changes]
     * Exception messages are improved.
+  [Document Improvement]
+    * Added the doc of exceptions.
 0.13  2023-03-20
   [Internal Compatible Changes]
     * Use SPVM::ExchangeAPI method instead of SPVM functions.

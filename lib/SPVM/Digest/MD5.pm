@@ -41,6 +41,10 @@ Calculates the MD5 digest
 of the $data, and returns it in binary form.  The returned string
 will be 16 bytes long.
 
+Exceptions:
+
+The $data must be defined. Otherwise an exception is thrown.
+
 =head2 md5_hex
 
   static method md5_hex : string ($data : string);
@@ -48,6 +52,10 @@ will be 16 bytes long.
 Same as L</"md5">, but will return the digest in hexadecimal form. The
 length of the returned string will be 32 and it will only contain
 characters from this set: '0'..'9' and 'a'..'f'.
+
+Exceptions:
+
+Exceptions of L</"md5"> can be thrown.
 
 =head2 md5_base64
 
@@ -62,6 +70,10 @@ Note that the base64 encoded string returned is not padded to be a
 multiple of 4 bytes long.  If you want interoperability with other
 base64 encoded md5 digests you might want to append the redundant
 string "==" to the result.
+
+Exceptions:
+
+Exceptions of L</"md5"> can be thrown.
 
 =head2 new
 
@@ -78,6 +90,10 @@ the state of the MD5 message-digest algorithm.
 
 The $data provided as argument are appended to the message we
 calculate the digest for. The return value is the L<Digest::MD5|SPVM::Digest::MD5> object itself.
+
+Exceptions:
+
+The $data must be defined. Otherwise an exception is thrown.
 
 Examples:
 
