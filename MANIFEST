@@ -51,5 +51,4 @@ t/lib/SPVMImpl.pm
 t/md5-aaa.t
 t/MD5.xs
 t/README
-t/rfc1321.txt
 t/utf8.t
