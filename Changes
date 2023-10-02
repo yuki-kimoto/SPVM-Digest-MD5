@@ -5,7 +5,9 @@
     * Improve English of exception messages.
   [Document Changes]
     * Improve document formats.
-    
+  [Incompatible Changes]
+    * The add method does not return the invocant.
+      
 1.001002 2023-05-23
   [Changes]
     * Internal changes only.

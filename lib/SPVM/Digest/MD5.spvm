@@ -19,7 +19,7 @@ class Digest::MD5 {
   # Instance Methods
   native method DESTROY : void ();
   
-  native method add : Digest::MD5 ($data : string);
+  native method add : void ($data : string);
   
   native method digest : string ();
   

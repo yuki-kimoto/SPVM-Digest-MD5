@@ -66,7 +66,7 @@ the state of the MD5 message-digest algorithm.
 
 =head2 add
 
-C<method add : L<Digest::MD5|SPVM::Digest::MD5> ($data : string);>
+C<method add : void ($data : string);>
 
 $data provided as argument are appended to the message we
 calculate the digest for. The return value is the L<Digest::MD5|SPVM::Digest::MD5> object itself.

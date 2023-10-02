@@ -345,7 +345,9 @@ class TestCase::Digest::MD5 {
   static method add : int () {
     {
       my $input = Fn->repeat("a", 10);
-      my $output = Digest::MD5->new->add($input)->hexdigest;
+      my $md5 = Digest::MD5->new;
+      $md5->add($input);
+      my $output = $md5->hexdigest;
       unless ($output eq "e09c80c42fda55f9d992e59ca6b3307d") {
         return 0;
       }
@@ -365,7 +367,9 @@ class TestCase::Digest::MD5 {
   static method digest : int () {
     {
       my $input = Fn->repeat("a", 10);
-      my $output = Digest::MD5->new->add($input)->digest;
+      my $md5 = Digest::MD5->new;
+      $md5->add($input);
+      my $output = $md5->digest;
       
       my $output_hex = "";
       
@@ -384,7 +388,9 @@ class TestCase::Digest::MD5 {
   static method hexdigest : int () {
     {
       my $input = Fn->repeat("a", 10);
-      my $output = Digest::MD5->new->add($input)->hexdigest;
+      my $md5 = Digest::MD5->new;
+      $md5->add($input);
+      my $output = $md5->hexdigest;
       unless ($output eq "e09c80c42fda55f9d992e59ca6b3307d") {
         return 0;
       }
