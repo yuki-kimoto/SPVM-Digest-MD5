@@ -41,7 +41,7 @@ will be 16 bytes long.
 
 Exceptions:
 
-The $data must be defined. Otherwise an exception is thrown.
+$data must be defined. Otherwise an exception is thrown.
 
 =head2 md5_hex
 
@@ -68,12 +68,12 @@ the state of the MD5 message-digest algorithm.
 
   method add : Digest::MD5 ($data : string);
 
-The $data provided as argument are appended to the message we
+$data provided as argument are appended to the message we
 calculate the digest for. The return value is the L<Digest::MD5|SPVM::Digest::MD5> object itself.
 
 Exceptions:
 
-The $data must be defined. Otherwise an exception is thrown.
+$data must be defined. Otherwise an exception is thrown.
 
 Examples:
 

@@ -25,7 +25,7 @@ class TestCase::Digest::MD5 {
     # Exception
     {
       eval { Digest::MD5->md5(undef); };
-      unless (Fn->contains($@, "The \$data must be defined")) {
+      unless (Fn->contains($@, "\$data must be defined")) {
         return 0;
       }
     }
@@ -321,7 +321,7 @@ class TestCase::Digest::MD5 {
     # Exception
     {
       eval { Digest::MD5->md5_hex(undef); };
-      unless (Fn->contains($@, "The \$data must be defined")) {
+      unless (Fn->contains($@, "\$data must be defined")) {
         return 0;
       }
     }
@@ -354,7 +354,7 @@ class TestCase::Digest::MD5 {
     # Exception
     {
       eval { Digest::MD5->new->add(undef); };
-      unless (Fn->contains($@, "The \$data must be defined")) {
+      unless (Fn->contains($@, "\$data must be defined")) {
         return 0;
       }
     }

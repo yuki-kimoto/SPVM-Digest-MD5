@@ -376,7 +376,7 @@ int32_t SPVM__Digest__MD5__md5(SPVM_ENV* env, SPVM_VALUE* stack) {
   void* obj_data = stack[0].oval;
   
   if (!obj_data) {
-    return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
+    return env->die(env, stack, "$data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
   data = (unsigned char *)env->get_chars(env, stack, obj_data);
@@ -399,7 +399,7 @@ int32_t SPVM__Digest__MD5__md5_hex(SPVM_ENV* env, SPVM_VALUE* stack) {
   void* obj_data = stack[0].oval;
   
   if (!obj_data) {
-    return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
+    return env->die(env, stack, "$data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
   data = (unsigned char *)env->get_chars(env, stack, obj_data);
@@ -459,7 +459,7 @@ int32_t SPVM__Digest__MD5__add(SPVM_ENV* env, SPVM_VALUE* stack) {
   void* obj_data = stack[1].oval;
   
   if (!obj_data) {
-    return env->die(env, stack, "The $data must be defined", __func__, FILE_NAME, __LINE__);
+    return env->die(env, stack, "$data must be defined", __func__, FILE_NAME, __LINE__);
   }
   
   const char* data = (unsigned char *)env->get_chars(env, stack, obj_data);
