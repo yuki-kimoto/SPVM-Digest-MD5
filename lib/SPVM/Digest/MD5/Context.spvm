@@ -1,4 +1,6 @@
 # Copyright (c) 2023 Yuki Kimoto
 # MIT License
 
-class Digest::MD5::Context : pointer;
+class Digest::MD5::Context : pointer {
+  version_from Digest::MD5;
+}
