@@ -14,8 +14,10 @@ use SPVM 'Fn';
 
 BEGIN { $ENV{SPVM_BUILD_DIR} = "$FindBin::Bin/.spvm_build"; }
 
+my $api = SPVM::api();
+
 # Start objects count
-my $start_memory_blocks_count = SPVM::api->get_memory_blocks_count();
+my $start_memory_blocks_count = $api->get_memory_blocks_count();
 
 # SPVM::Digest::MD5
 {
@@ -49,8 +51,10 @@ my $start_memory_blocks_count = SPVM::api->get_memory_blocks_count();
   is($SPVM::Digest::MD5::VERSION, SPVM::Fn->get_version_string('Digest::MD5'));
 }
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 # All object is freed
-my $end_memory_blocks_count = SPVM::api->get_memory_blocks_count();
+my $end_memory_blocks_count = $api->get_memory_blocks_count();
 is($end_memory_blocks_count, $start_memory_blocks_count);
 
 done_testing;
