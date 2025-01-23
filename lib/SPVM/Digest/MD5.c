@@ -8,7 +8,7 @@
 #include <string.h>
 #include <assert.h>
 
-static const char* FILE_NAME = "SPVM/Digest/MD5.c";
+static const char* FILE_NAME = "Digest/MD5.c";
 
 #if BYTEORDER > 0x4321 || defined(TRUNCATE_uint32_t)
   #define TO32(x)    ((x) &  0xFFFFffff)
