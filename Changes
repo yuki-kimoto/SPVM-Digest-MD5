@@ -1,3 +1,6 @@
+1.003 2025-01-23
+  [Requirement Changes]
+    * Require SPVM 0.990042.
 1.002 2023-12-26
   [Bug Fix]
     * Fix the bug that FILE_NAME in native source file does not have the file scope.
