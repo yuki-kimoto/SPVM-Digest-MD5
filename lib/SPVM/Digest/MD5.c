@@ -360,7 +360,7 @@ static void* make_output(SPVM_ENV* env, SPVM_VALUE* stack, const unsigned char *
     break;
   }
   
-  void* obj_ret = env->new_string(env, stack, ret, len);
+  SPVM_OBJ* obj_ret = env->new_string(env, stack, ret, len);
   
   return obj_ret;
 }
@@ -373,7 +373,7 @@ int32_t SPVM__Digest__MD5__md5(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t len;
   unsigned char digeststr[16];
 
-  void* obj_data = stack[0].oval;
+  SPVM_OBJ* obj_data = stack[0].oval;
   
   if (!obj_data) {
     return env->die(env, stack, "$data must be defined", __func__, FILE_NAME, __LINE__);
@@ -396,7 +396,7 @@ int32_t SPVM__Digest__MD5__md5_hex(SPVM_ENV* env, SPVM_VALUE* stack) {
   unsigned char *data;
   int32_t len;
   unsigned char digeststr[16];
-  void* obj_data = stack[0].oval;
+  SPVM_OBJ* obj_data = stack[0].oval;
   
   if (!obj_data) {
     return env->die(env, stack, "$data must be defined", __func__, FILE_NAME, __LINE__);
@@ -417,14 +417,14 @@ int32_t SPVM__Digest__MD5__new(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e;
   
-  void* obj_self = env->new_object_by_name(env, stack, "Digest::MD5", &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_self = env->new_object_by_name(env, stack, "Digest::MD5", &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
   
   MD5_CTX* ctx = env->new_memory_block(env, stack, sizeof(MD5_CTX));
   
   MD5Init(ctx);
   
-  void* obj_ctx = env->new_pointer_object_by_name(env, stack, "Digest::MD5::Context", ctx, &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_ctx = env->new_pointer_object_by_name(env, stack, "Digest::MD5::Context", ctx, &e, __func__, FILE_NAME, __LINE__);
   
   env->set_field_object_by_name(env, stack, obj_self, "context", obj_ctx, &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
@@ -438,9 +438,9 @@ int32_t SPVM__Digest__MD5__new(SPVM_ENV* env, SPVM_VALUE* stack) {
 int32_t SPVM__Digest__MD5__DESTROY(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t e;
   
-  void* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
   
-  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
   
   MD5_CTX* ctx = env->get_pointer(env, stack, obj_ctx);
@@ -454,9 +454,9 @@ int32_t SPVM__Digest__MD5__DESTROY(SPVM_ENV* env, SPVM_VALUE* stack) {
 int32_t SPVM__Digest__MD5__add(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e;
-  void* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
   
-  void* obj_data = stack[1].oval;
+  SPVM_OBJ* obj_data = stack[1].oval;
   
   if (!obj_data) {
     return env->die(env, stack, "$data must be defined", __func__, FILE_NAME, __LINE__);
@@ -465,7 +465,7 @@ int32_t SPVM__Digest__MD5__add(SPVM_ENV* env, SPVM_VALUE* stack) {
   const char* data = (unsigned char *)env->get_chars(env, stack, obj_data);
   int32_t len = env->length(env, stack, obj_data);
   
-  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
   
   MD5_CTX* ctx = env->get_pointer(env, stack, obj_ctx);
@@ -479,9 +479,9 @@ int32_t SPVM__Digest__MD5__add(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__Digest__MD5__digest(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t e;
-  void* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
   
-  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
   
   if (e) { return e; }
   
@@ -496,9 +496,9 @@ int32_t SPVM__Digest__MD5__digest(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__Digest__MD5__hexdigest(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t e;
-  void* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
   
-  void* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_ctx = env->get_field_object_by_name(env, stack, obj_self, "context", &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
   
   MD5_CTX* ctx = env->get_pointer(env, stack, obj_ctx);
