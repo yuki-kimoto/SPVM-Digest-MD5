@@ -2,17 +2,12 @@ use Test::More;
 
 use strict;
 use warnings;
-use FindBin;
-
-use lib "$FindBin::Bin/lib";
+use lib "t/lib";
 
 use SPVM 'TestCase::Digest::MD5';
 
 use SPVM 'Digest::MD5';
 use SPVM::Digest::MD5;
-use SPVM 'Fn';
-
-BEGIN { $ENV{SPVM_BUILD_DIR} = "$FindBin::Bin/.spvm_build"; }
 
 my $api = SPVM::api();
 
@@ -48,10 +43,10 @@ my $start_memory_blocks_count = $api->get_memory_blocks_count();
 
 # Version
 {
-  is($SPVM::Digest::MD5::VERSION, SPVM::Fn->get_version_string('Digest::MD5'));
+  is($SPVM::Digest::MD5::VERSION, $api->get_version_string('Digest::MD5'));
 }
 
-SPVM::Fn->destroy_runtime_permanent_vars;
+$api->destroy_runtime_permanent_vars;
 
 # All object is freed
 my $end_memory_blocks_count = $api->get_memory_blocks_count();
