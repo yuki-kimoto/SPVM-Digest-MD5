@@ -1,6 +1,6 @@
 package SPVM::Digest::MD5;
 
-our $VERSION = "1.008";
+our $VERSION = "1.009";
 
 1;
 
@@ -10,7 +10,7 @@ SPVM::Digest::MD5 - MD5
 
 =head1 Description
 
-The Digest::MD5 class of L<SPVM> has methods for MD5.
+Digest::MD5 class in L<SPVM> calculates MD5 digest.
 
 =head1 Usage
 
